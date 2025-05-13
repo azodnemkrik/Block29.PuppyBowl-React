@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
+import gsap from "gsap";
+import { useGSAP } from '@gsap/react'
 
 
 const Search = ({ allPlayers }) => {
@@ -19,6 +21,12 @@ const Search = ({ allPlayers }) => {
 		console.log("result", result)
 		setSearchResults(result)
 	}, [allPlayers])
+
+	useGSAP(() => {
+		gsap.from(".puppyCardContainer", {
+			 duration:.5 , scale: 0 , y: 300 , ease: 'back.out' , boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)" , stagger: .05 
+		});
+	})
 
 	const clearSearch = () => {
 		setSearchResults([])

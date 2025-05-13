@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 
-const NewPlayerForm = ({ allPlayers , setAllPlayers }) => {
+const NewPlayerForm = ({ allPlayers, setAllPlayers }) => {
 	const navigate = useNavigate()
 
 	const addPlayer = async (formData) => {
@@ -21,8 +21,8 @@ const NewPlayerForm = ({ allPlayers , setAllPlayers }) => {
 	}
 
 	const onChangeValue = (event) => {
-    console.log(event.target.value);
-  }
+		console.log(event.target.value);
+	}
 
 
 	return (
@@ -50,21 +50,23 @@ const NewPlayerForm = ({ allPlayers , setAllPlayers }) => {
 						<h4>Select Status</h4>
 						<div>
 							<div onChange={onChangeValue}>
-									<label>
-										Bench
-										<input type="radio" name="status" value="bench" />
-									</label>
-									<label>
-										Field
-										<input type="radio" name="status" value="field" />
-									</label>
+								<label>
+									Bench
+									<input type="radio" name="status" value="bench" />
+								</label>
+								<label>
+									Field
+									<input type="radio" name="status" value="field" />
+								</label>
 							</div>
 						</div>
 					</label>
 					<br />
-					<button>Submit</button>
+					<div>
+						<button className="domButton">Submit</button><br/>
+						<Link to="/players" className="backButton domButton">Back to All Players</Link>
+					</div>
 				</form>
-				<Link to="/players">Back to All Players</Link>
 			</div>
 		</div>
 	)

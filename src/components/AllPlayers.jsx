@@ -1,5 +1,8 @@
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import gsap from "gsap";
+import { useGSAP } from '@gsap/react'
+
 
 const AllPlayers = ({ allPlayers, searchResults, setSearchResults, checkDelete }) => {
 
@@ -16,6 +19,11 @@ const AllPlayers = ({ allPlayers, searchResults, setSearchResults, checkDelete }
 		// console.log(result)
 		// setSearchResults(result)
 	}
+	useGSAP(() => {
+		gsap.from(".puppyCardContainer", {
+			 duration:.45 , scale: 0 , y: 300 , ease: 'back.out' , boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)" , stagger: .05 
+		});
+	})
 
 
 	return (
@@ -36,12 +44,13 @@ const AllPlayers = ({ allPlayers, searchResults, setSearchResults, checkDelete }
 									<div className="puppyCard">
 										<img src={player.imageUrl} />
 										<p>{player.name}</p>
-										<button className="deleteButton domButton" onClick={(event) => {
+										{/* <button className="deleteButton domButton" onClick={(event) => {
 											event.stopPropagation(); // Prevent the Link from being triggered
 											checkDelete(player.id)
-										}} id={player.id} name={player.name}>Delete</button>
+										}} id={player.id} name={player.name}>Delete</button> */}
 									</div>
 								</Link>
+								<a className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete Player</a>
 							</div>
 						);
 					})
