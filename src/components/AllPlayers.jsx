@@ -1,15 +1,20 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AllPlayers = ({ allPlayers, searchResults, setSearchResults, checkDelete }) => {
 
+	const navigate = useNavigate()
+
 	const searchForPlayers = (formData) => {
 		const target = formData.get("searchBar").toLowerCase()
-		const result = allPlayers.filter((player) => {
-			return player.name.toLowerCase().includes(target)
-		})
-		console.log(result)
-		setSearchResults(result)
+		navigate(`/players/search/?player=${target}`)
+
+
+		// const result = allPlayers.filter((player) => {
+		// 	return player.name.toLowerCase().includes(target)
+		// })
+		// console.log(result)
+		// setSearchResults(result)
 	}
 
 
@@ -21,52 +26,27 @@ const AllPlayers = ({ allPlayers, searchResults, setSearchResults, checkDelete }
 				<input name="searchBar" type="text" /><button>Submit</button>
 			</form>
 
-			{
-				searchResults.length > 0 ? (
-					<div>
-						<button onClick={()=>{setSearchResults([])}}>Clear Search Results</button>
-
-						<div className="puppiesList">
-							<br />
-							{
-								searchResults.map((player) => {
-									return (
-										<div key={player.id} className="puppyCardContainer">
-											<Link to={`/players/${player.id}`}>
-												<div className="puppyCard">
-													<img src={player.imageUrl} />
-													<p>{player.name}</p>
-													<button className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete</button>
-												</div>
-											</Link>
-										</div>
-									);
-								})
-							}<br />
-						</div>
-					</div>
-				) : (
-
-					<div className="puppiesList">
-						<br />
-						{
-							allPlayers.map((player) => {
-								return (
-									<div key={player.id} className="puppyCardContainer">
-										<Link to={`/players/${player.id}`}>
-											<div className="puppyCard">
-												<img src={player.imageUrl} />
-												<p>{player.name}</p>
-												<button className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete</button>
-											</div>
-										</Link>
+			<div className="puppiesList">
+				<br />
+				{
+					allPlayers.map((player) => {
+						return (
+							<div key={player.id} className="puppyCardContainer">
+								<Link to={`/players/${player.id}`}>
+									<div className="puppyCard">
+										<img src={player.imageUrl} />
+										<p>{player.name}</p>
+										<button className="deleteButton domButton" onClick={(event) => {
+											event.stopPropagation(); // Prevent the Link from being triggered
+											checkDelete(player.id)
+										}} id={player.id} name={player.name}>Delete</button>
 									</div>
-								);
-							})
-						}
-					</div>
-				)
-			}
+								</Link>
+							</div>
+						);
+					})
+				}
+			</div>
 		</div>
 	);
 };

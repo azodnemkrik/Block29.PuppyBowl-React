@@ -5,8 +5,9 @@ import NewPlayerForm from "./components/NewPlayerForm"
 import SinglePlayer from "./components/SinglePlayer"
 import Home from './components/Home';
 import { useEffect, useState } from "react"
-import { Routes , Route, useLocation } from "react-router-dom"
+import { Routes , Route, useLocation, useNavigate } from "react-router-dom"
 import axios from 'axios'
+import Search from './components/Search';
 
 function App() {
 	const location = useLocation()
@@ -14,6 +15,8 @@ function App() {
 
 	const [ allPlayers , setAllPlayers ] = useState([])
 	const [ searchResults , setSearchResults ] = useState([])
+
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const fetchPlayers = async () => {
@@ -32,12 +35,14 @@ function App() {
 		console.log("!!", id)
 		console.log("Are you sure?")
 		// if(event.target.classList.contains("deleteButton")){
-		if (confirm("Are you sure?")) {
+		if (confirm("Seriously?")) {
 			console.log("You pressed OK!")
 			deletePlayer(id)
+			navigate('/players')
 		} else {
 			console.log("You pressed Cancel!")
-			// }
+			navigate('/players')
+		// }
 		}
 	}
 
@@ -52,6 +57,7 @@ function App() {
 		} catch (error) {
 			console.error(error)
 		}
+		navigate('/players')
 	}
 
 	return (
@@ -62,6 +68,7 @@ function App() {
 				<Route path='/players'  element={<AllPlayers allPlayers={allPlayers} checkDelete={checkDelete} deletePlayer={deletePlayer} searchResults={searchResults} setSearchResults={setSearchResults}/>}></Route>
 				<Route path='/players/:id'  element={<SinglePlayer allPlayers={allPlayers} setAllPlayers={setAllPlayers}  checkDelete={checkDelete} deletePlayer={deletePlayer}/>}></Route>
 				<Route path='/addplayer' element={<NewPlayerForm allPlayers={allPlayers} setAllPlayers={setAllPlayers}/>}></Route>
+				<Route path='/players/search/?' element={<Search allPlayers={allPlayers} checkDelete={checkDelete} deletePlayer={deletePlayer}/>}/>
 			</Routes>
 		</div>
 

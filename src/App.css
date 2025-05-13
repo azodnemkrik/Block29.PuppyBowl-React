@@ -167,6 +167,16 @@ a {
 	/* letter-spacing: 1px; */
 }
 
+.backButton {
+  background-color: #cccccc;
+  color: #333333;
+}
+
+.backButton:hover {
+  background-color: #666666;
+  color: #FFFFFF;
+}
+
 
 /* Form */
 

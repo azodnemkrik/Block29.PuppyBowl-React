@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 
 const NewPlayerForm = ({ allPlayers , setAllPlayers }) => {
+	const navigate = useNavigate()
 
 	const addPlayer = async (formData) => {
 		try {
@@ -13,6 +14,7 @@ const NewPlayerForm = ({ allPlayers , setAllPlayers }) => {
 			}
 			const { data } = await axios.post("https://fsa-puppy-bowl.herokuapp.com/api/2501-ftb-et-web-am-PUPPIES/players", newPlayer)
 			setAllPlayers([...allPlayers, data])
+			navigate('/players')
 		} catch (error) {
 			console.error(error)
 		}

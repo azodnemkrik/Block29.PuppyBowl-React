@@ -1,14 +1,14 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 const SinglePlayer = ({ allPlayers, setAllPlayers, checkDelete }) => {
 
+	const navigate = useNavigate()
 	const params = useParams()
 	const id = params.id * 1
 	const player = allPlayers.find((player) => {
 		return player.id === id
 	})
 	console.log(player)
-
 
 	return (
 		<div>
@@ -31,6 +31,7 @@ const SinglePlayer = ({ allPlayers, setAllPlayers, checkDelete }) => {
 								<span> {player.teamId ? player.teamId :" Unassigned"}</span></p>
 								<br />
 								<a className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete Player</a>
+								<a className="backButton domButton" onClick={() => { navigate('/players') }}>Back to All Players</a>
 							</div>
 						</div>
 					</div>
