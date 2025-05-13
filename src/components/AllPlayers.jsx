@@ -1,33 +1,72 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
 
-const AllPlayers = ({ allPlayers }) => {
+const AllPlayers = ({ allPlayers, searchResults, setSearchResults, checkDelete }) => {
+
+	const searchForPlayers = (formData) => {
+		const target = formData.get("searchBar").toLowerCase()
+		const result = allPlayers.filter((player) => {
+			return player.name.toLowerCase().includes(target)
+		})
+		console.log(result)
+		setSearchResults(result)
+	}
+
+
 	return (
 		<div>
 			<h3>Check out all our Puppy Players!</h3>
-			<div className="puppiesList">
-				<br />
-				{
-					allPlayers.map((player) => {
-						return (
-							<Link to={`/players/${player.id}`}>
-								<div key={player.id} className="puppyCard">
-									<img src={player.imageUrl} />
-									<h3>{player.name}</h3>
-								</div>
-							</Link>
+			<h3>Search for a specific Player by name:</h3>
+			<form action={searchForPlayers}>
+				<input name="searchBar" type="text" /><button>Submit</button>
+			</form>
 
-							/*
-								<a href=#${puppy.name}>
-									<div class="puppyCard">
-											<img src="${puppy.imageUrl}" />
-											<h3>${puppy.name}</h3>
-									</div> 
-								</a>
-							*/
-						);
-					})
-				}
-			</div>
+			{
+				searchResults.length > 0 ? (
+					<div>
+						<button onClick={()=>{setSearchResults([])}}>Clear Search Results</button>
+
+						<div className="puppiesList">
+							<br />
+							{
+								searchResults.map((player) => {
+									return (
+										<div key={player.id} className="puppyCardContainer">
+											<Link to={`/players/${player.id}`}>
+												<div className="puppyCard">
+													<img src={player.imageUrl} />
+													<p>{player.name}</p>
+													<button className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete</button>
+												</div>
+											</Link>
+										</div>
+									);
+								})
+							}<br />
+						</div>
+					</div>
+				) : (
+
+					<div className="puppiesList">
+						<br />
+						{
+							allPlayers.map((player) => {
+								return (
+									<div key={player.id} className="puppyCardContainer">
+										<Link to={`/players/${player.id}`}>
+											<div className="puppyCard">
+												<img src={player.imageUrl} />
+												<p>{player.name}</p>
+												<button className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete</button>
+											</div>
+										</Link>
+									</div>
+								);
+							})
+						}
+					</div>
+				)
+			}
 		</div>
 	);
 };

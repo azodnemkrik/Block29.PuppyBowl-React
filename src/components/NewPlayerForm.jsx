@@ -18,44 +18,44 @@ const NewPlayerForm = ({ allPlayers , setAllPlayers }) => {
 		}
 	}
 
+	const onChangeValue = (event) => {
+    console.log(event.target.value);
+  }
+
 
 	return (
 		<div>
 			<h3>This is the NewPlayerForm!</h3>
 			<div className="formContainer">
-				<form action={addPlayer}>
+				<form action={addPlayer} className="addPlayerform">
 					<label>
-						Name: <input type="text" name="name" />
+						Name: <input type="text" className="addPlayerInputText" name="name" />
 					</label>
 					<br />
 					<label>
-						Breed: <input type="text" name="breed" />
+						Breed: <input type="text" className="addPlayerInputText" name="breed" />
 					</label>
 					<br />
 					<label>
-						Image URL:<input type="url" name="imageUrl" />
+						Image URL:<input type="url" className="addPlayerInputText" name="imageUrl" />
 					</label>
 					<br />
 					<label>
-						Team ID:<input type="text" name="teamId" />
+						Team ID:<input type="text" className="addPlayerInputText" name="teamId" />
 					</label>
 					<br />
 					<label>
 						<h4>Select Status</h4>
 						<div>
-							<div class="two-column-layout">
-								<div className="layoutRow">
+							<div onChange={onChangeValue}>
 									<label>
 										Bench
-										<input type="radio" id="bench" name="status" value="bench" checked />
+										<input type="radio" name="status" value="bench" />
 									</label>
-								</div>
-								<div className="layoutRow">
 									<label>
 										Field
-										<input type="radio" id="field" name="status" value="field" />
+										<input type="radio" name="status" value="field" />
 									</label>
-								</div>
 							</div>
 						</div>
 					</label>

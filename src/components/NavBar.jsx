@@ -9,7 +9,6 @@ const NavBar = ({ pathname }) => {
 			<nav>
 				<Link to='/' className={ pathname === "/" ? "selected" : ""}>Home</Link>
 				<Link to='/players' className={ pathname === "/players" ? "selected" : ""}>All Players</Link>
-				<Link to='/players/:id' className={ pathname === "/players:id" ? "selected" : ""}>Single Player</Link>
 				<Link to='/addplayer' className={ pathname === "/addplayer" ? "selected" : ""}>Add New Player</Link>
 			</nav>
 		</div>
