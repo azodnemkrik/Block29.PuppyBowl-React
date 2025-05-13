@@ -20,20 +20,28 @@ const AllPlayers = ({ allPlayers, searchResults, setSearchResults, checkDelete }
 		// setSearchResults(result)
 	}
 	useGSAP(() => {
-		gsap.from(".puppyCardContainer", {
-			 duration:.45 , scale: 0 , y: 300 , ease: 'back.out' , boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)" , stagger: .05 
-		});
+		allPlayers.length > 0 ? (
+			gsap.from(".puppyCardContainer", {
+				duration:.45 , scale: 0 , y: 300 , ease: 'back.out' , boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)" , stagger: .05 
+			})
+		):(
+			console.log("Loading...")
+		)
 	})
 
 
 	return (
 		<div>
 			<h3>Check out all our Puppy Players!</h3>
-			<h3>Search for a specific Player by name:</h3>
-			<form action={searchForPlayers}>
-				<input name="searchBar" type="text" /><button>Submit</button>
+			<form action={searchForPlayers} className="searchForm">
+				<h3>Search for a specific Player by name:</h3>
+				<div>
+					<input name="searchBar" className="searchBar" type="text" /><button className="searchButton"><span class="material-symbols-outlined">search</span></button>
+				</div>
 			</form>
-
+{/* <span class="material-symbols-outlined">
+search
+</span> */}
 			<div className="puppiesList">
 				<br />
 				{
@@ -44,10 +52,6 @@ const AllPlayers = ({ allPlayers, searchResults, setSearchResults, checkDelete }
 									<div className="puppyCard">
 										<img src={player.imageUrl} />
 										<p>{player.name}</p>
-										{/* <button className="deleteButton domButton" onClick={(event) => {
-											event.stopPropagation(); // Prevent the Link from being triggered
-											checkDelete(player.id)
-										}} id={player.id} name={player.name}>Delete</button> */}
 									</div>
 								</Link>
 								<a className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete Player</a>

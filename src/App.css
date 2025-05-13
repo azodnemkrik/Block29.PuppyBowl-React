@@ -5,15 +5,48 @@
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+	font-variation-settings:
+		'FILL' 0,
+		'wght' 400,
+		'GRAD' 0,
+		'opsz' 24
+}
+.searchForm{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.searchForm > div {
+	display: flex;
+	justify-content: start;
+	gap: 1rem;
+	width: 40%;
+}
+.searchBar {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 40px;
+	border-radius: 10px;
 }
 
-.searchBar {
-	width: 50%;
+.searchButton {
+	height: 40px;
+	border-radius: 10px;
+}
+
+.clearSearchButton {
+	width: 30% !important;
+	height: 40px;
+	justify-self: center;
+	margin-top: 20px;
+	background-color: #cccccc;
+	color: #333333;}
+
+.clearSearchButton:hover {
+	background-color: #666666;
+	color: #FFFFFF;
 }
 
 body {
@@ -66,8 +99,8 @@ nav a:hover {
 
 .puppyCardContainer {
 	display: flex;
-    flex-direction: column;
-    align-items: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 .puppyCard {
@@ -79,8 +112,8 @@ nav a:hover {
 	align-items: center;
 	border: 3px solid #c48300;
 	border-radius: 10px;
-    margin: 1.5rem 1rem .5rem 1rem;
-    padding: 1rem;
+	margin: 1.5rem 1rem .5rem 1rem;
+	padding: 1rem;
 	/* width: calc(100% /1 - 1rem); */
 	height: 275px;
 	/* cursor: pointer; */
@@ -114,7 +147,7 @@ a {
 }
 
 .singlePlayer {
-	width: 60%;
+	width: 75%;
 	height: 30%;
 	background-color: #ffd500;
 	border: 4px solid #c48300;
@@ -132,11 +165,17 @@ a {
 	padding: .5rem;
 	margin-left: 1rem;
 }
-.playerStatsColumn > p > span {
-  font-family: "National Park", sans-serif;
+
+.playerStatsColumn>p>span {
+	font-family: "National Park", sans-serif;
 }
 
-.layoutColumn > img {
+.layoutColumn {
+	display: flex;
+	justify-content: center;
+}
+
+.layoutColumn>img {
 	width: 100%;
 }
 
@@ -154,6 +193,7 @@ a {
 	font-size: 1rem;
 	transition-duration: .25s;
 	cursor: pointer;
+	text-align: center;
 }
 
 .deleteButton {
@@ -168,14 +208,14 @@ a {
 }
 
 .backButton {
-  background-color: #cccccc;
-  color: #333333;
-  margin-bottom: 10px;
+	background-color: #cccccc;
+	color: #333333;
+	margin-bottom: 10px;
 }
 
 .backButton:hover {
-  background-color: #666666;
-  color: #FFFFFF;
+	background-color: #666666;
+	color: #FFFFFF;
 }
 
 
@@ -220,6 +260,12 @@ a {
 	width: 100%;
 }
 
+.addPlayerform>label {
+	font-family: "Luckiest Guy", cursive;
+	font-size: 1rem;
+	color: #002660;
+}
+
 .addPlayerform h2 {
 	color: #012b6b;
 	text-align: center;
@@ -232,7 +278,7 @@ a {
 	border-radius: 1000px;
 	margin-top: 40px;
 	font-size: 1.1rem; */
-	background-color: #00FF00;
+	background-color: #008900;
 	padding: 10px 10px 5px 10px;
 	display: flex;
 	justify-content: center;
@@ -245,10 +291,12 @@ a {
 	font-size: 1rem;
 	transition-duration: .25s;
 	cursor: pointer;
+	letter-spacing: .06rem;
 }
-.addPlayerform button :hover {
+
+.addPlayerform button:hover {
 	background-color: #00cc00;
-	color: #ffd500;
+	color: #FFFFFF;
 }
 
 .addPlayerInputText {
@@ -257,10 +305,36 @@ a {
 	margin-bottom: 12px;
 	font-size: 1.25em;
 	color: #0074ff;
+	border-radius: 5px;
 }
 
 label {
 	color: #012b6b;
 	font-size: 1rem;
 	font-weight: bold;
+}
+
+.homeContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	/* width: 80%; */
+}
+
+.homeContent {
+	margin: 1rem;
+	width: 70%;
+	color: #FFFFFF;
+}
+
+.homeContent>img {
+	width: 100%;
+}
+
+.searchBar {
+	color: #012b6b;
+	font-size: 1rem;
+	font-weight: bold;
+	height: 2rem;
 }

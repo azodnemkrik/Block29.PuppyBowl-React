@@ -27,7 +27,7 @@ const NewPlayerForm = ({ allPlayers, setAllPlayers }) => {
 
 	return (
 		<div>
-			<h3>This is the NewPlayerForm!</h3>
+			<h3>Add a New Player here!</h3>
 			<div className="formContainer">
 				<form action={addPlayer} className="addPlayerform">
 					<label>

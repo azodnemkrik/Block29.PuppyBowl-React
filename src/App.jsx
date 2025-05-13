@@ -35,7 +35,7 @@ function App() {
 		console.log("!!", id)
 		console.log("Are you sure?")
 		// if(event.target.classList.contains("deleteButton")){
-		if (confirm("Seriously?")) {
+		if (confirm("Are you sure?")) {
 			console.log("You pressed OK!")
 			deletePlayer(id)
 			navigate('/players')

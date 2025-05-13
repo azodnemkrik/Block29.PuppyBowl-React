@@ -23,9 +23,13 @@ const Search = ({ allPlayers }) => {
 	}, [allPlayers])
 
 	useGSAP(() => {
-		gsap.from(".puppyCardContainer", {
-			 duration:.5 , scale: 0 , y: 300 , ease: 'back.out' , boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)" , stagger: .05 
-		});
+		searchResults.length > 0 ? (
+			gsap.from(".puppyCardContainer", {
+				duration:.45 , scale: 0 , y: 300 , ease: 'back.out' , boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)" , stagger: .05 
+			})
+		):(
+			console.log("Loading...")
+		)
 	})
 
 	const clearSearch = () => {
@@ -36,6 +40,7 @@ const Search = ({ allPlayers }) => {
 
 	return (
 		<div>
+			<button className="clearSearchButton domButton" onClick={(() => { clearSearch() })}>Clear Search Results</button>
 			<div className="puppiesList">
 				<br />
 				{
@@ -46,15 +51,14 @@ const Search = ({ allPlayers }) => {
 									<div className="puppyCard">
 										<img src={player.imageUrl} />
 										<p>{player.name}</p>
-										<button className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete</button>
 									</div>
 								</Link>
+								<a className="deleteButton domButton" onClick={() => { checkDelete(player.id) }} id={player.id} name={player.name}>Delete Player</a>
 							</div>
 						);
 					})
 				}
 			</div>
-			<button onClick={(() => { clearSearch() })}>Clear Search Results</button>
 		</div>
 	)
 }
