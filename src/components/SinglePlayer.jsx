@@ -1,4 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
+import EditPlayer from "./EditPlayer"
 
 const SinglePlayer = ({ allPlayers, setAllPlayers, checkDelete }) => {
 
@@ -13,6 +14,7 @@ const SinglePlayer = ({ allPlayers, setAllPlayers, checkDelete }) => {
 	return (
 		<div>
 			<h3>This is the SinglePlayer!</h3>
+			<EditPlayer player={player} allPlayers={allPlayers} setAllPlayers={setAllPlayers}/>
 			{
 				player ? (
 					<div className="singlePlayerContainer">
